@@ -15,7 +15,9 @@
                             <label for="review">Review</label>
                             <textarea class="form-control" name="review" id="review" required @class(['border-red-500' => $errors->has('review')])>{{ old('review') }}</textarea>
                             @error('review')
-                                <p class="error">{{ $message }}</p>
+                                <div class="alert alert-danger" role="alert">
+                                    {{ $message }}
+                                  </div>
                             @enderror
                         </div>
 

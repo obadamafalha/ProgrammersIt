@@ -20,16 +20,19 @@
 
 
                     @isset($books['items'])
-                        <div class="row row-cols-3 row-gap-3">
+                        <div class="row row-cols-1 row-cols-sm-3 row-gap-3">
                             @foreach ($books['items'] as $book)
                                 <div class="col">
                                     <div class="card" style="height: 350px; width: 100%;">
+                                        <div class="container">
                                         <div class="row row-cols-2 align-items-start">
                                             
                                             <div class="col-sm-7">
                                                 @isset($book['volumeInfo']['imageLinks']['smallThumbnail'])
+                                                <div>
                                                     <img src="{{ $book['volumeInfo']['imageLinks']['smallThumbnail'] }}"
-                                                        alt="{{ $book['volumeInfo']['title'] }}" width="50%" height="50%">
+                                                        alt="{{ $book['volumeInfo']['title'] }}" width="100px" height="100px">
+                                                    </div>
                                                 @endisset
                                             </div>
                                             <div class="col-sm-5">
@@ -51,10 +54,11 @@
                                                 <p class="card-text">Author: {{ $book['volumeInfo']['authors'][0] }}
                                                 </p>
                                             @endisset
-                                            <!-- Add more details as needed -->
+
                                             <a href="{{ route('detail', ['book_id' => $book['id']]) }}"
                                                 class="btn btn-primary">Details</a>
                                         </div>
+                                    </div>
                                     </div>
                                 </div>
                             @endforeach

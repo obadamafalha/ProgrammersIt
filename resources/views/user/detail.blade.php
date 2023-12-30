@@ -10,17 +10,16 @@
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
 
                     @if (session()->has('success'))
-                    <div 
-                        class="p-3 text-white-emphasis bg-success-subtle border border-success-subtle rounded-3"
-                        role="alert">
-                        <strong class="font-bold">Success!</strong>
-                        <div>
-                            {{ session('success') }}
+                        <div class="p-3 text-white-emphasis bg-success-subtle border border-success-subtle rounded-3"
+                            role="alert">
+                            <strong class="font-bold">Success!</strong>
+                            <div>
+                                {{ session('success') }}
+                            </div>
                         </div>
-                    </div>
-                @endif
+                    @endif
                     <div class="container p-4">
-                       
+
                         <h1>{{ $book['volumeInfo']['title'] }}</h1>
 
                         <div class="row">
@@ -34,9 +33,11 @@
                                 @isset($book['volumeInfo']['authors'][0])
                                     <p><strong>Author:</strong> {{ $book['volumeInfo']['authors'][0] }}</p>
                                 @endisset
+
                                 @isset($book['volumeInfo']['publishedDate'])
                                     <p><strong>Published Date:</strong> {{ $book['volumeInfo']['publishedDate'] }}</p>
                                 @endisset
+                                
                                 @isset($book['volumeInfo']['pageCount'])
                                     <p><strong>Page Count:</strong> {{ $book['volumeInfo']['pageCount'] }}</p>
                                 @endisset
@@ -60,22 +61,22 @@
                         </div>
 
                         @if ($reviews->count() > 0)
-                        <div class="row row-gap-3">
-                            @foreach ($reviews as $review)
-                                <div class="card">
-                                    <div class="card-body ">
-                                        <div class="float-md-end">
-                                            <x-star-rating :rating="$review->rating" />
-                                        </div>
-                                        <h5 class="card-title"> {{ $review->user->email }}</h5>
-                                        <p class="card-text text-gray-700">Comment: {{ $review->review }}</p>
-                                        <div class="float-md-end text-gray-700">
-                                            {{ $review->created_at->format('d/m/Y') }}
+                            <div class="row row-gap-3">
+                                @foreach ($reviews as $review)
+                                    <div class="card">
+                                        <div class="card-body ">
+                                            <div class="float-md-end">
+                                                <x-star-rating :rating="$review->rating" />
+                                            </div>
+                                            <h5 class="card-title"> {{ $review->user->email }}</h5>
+                                            <p class="card-text text-gray-700">Comment: {{ $review->review }}</p>
+                                            <div class="float-md-end text-gray-700">
+                                                {{ $review->created_at->format('d/m/Y') }}
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            @endforeach
-                        </div>
+                                @endforeach
+                            </div>
                         @else
                             <p>No reviews yet.</p>
                         @endif
